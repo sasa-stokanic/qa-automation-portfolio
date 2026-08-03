@@ -27,25 +27,24 @@ Along the way I ran into (and fixed) real problems: flaky selectors, a scoping b
 ## Project structure
 
 ```
-automationexercise/
-├── pages/                  # Page Object classes — one per page/component
-│   ├── cart_page.py
-│   ├── checkout_page.py
-│   ├── login_page.py
-│   ├── product_page.py
-│   ├── register_page.py
-│   └── search_page.py
-├── tests/                  # Test files — one per feature area
-│   ├── test_cart.py
-│   ├── test_checkout.py
-│   ├── test_login.py
-│   ├── test_product_page.py
-│   ├── test_register.py
-│   └── test_search.py
-├── conftest.py              # Shared pytest fixtures (WebDriver setup, headless mode for CI)
-├── requirements.txt
-└── .github/workflows/       # CI/CD pipeline definition
-    └── tests.yml
+pages/                     # Page Object classes — one per page/component
+├── cart_page.py
+├── checkout_page.py
+├── login_page.py
+├── product_page.py
+├── register_page.py
+└── search_page.py
+tests/                      # Test files — one per feature area
+├── test_cart.py
+├── test_checkout.py
+├── test_login.py
+├── test_product_page.py
+├── test_register.py
+└── test_search.py
+conftest.py                 # Shared pytest fixtures (WebDriver setup, headless mode for CI)
+requirements.txt
+.github/workflows/          # CI/CD pipeline definition
+└── tests.yml
 ```
 
 ## What's covered
@@ -77,7 +76,7 @@ You can check the latest run status under the [Actions tab](../../actions) of th
 
 ```bash
 git clone https://github.com/sasa-stokanic/qa-automation-portfolio.git
-cd qa-automation-portfolio/automationexercise
+cd qa-automation-portfolio
 pip install -r requirements.txt
 pytest tests/ --html=report.html --self-contained-html
 ```
