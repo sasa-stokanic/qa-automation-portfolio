@@ -31,7 +31,7 @@ Every assertion has a message showing expected vs. actual, so a red run is reada
 
 ## Manual testing
 
-Before automating, I ran a full manual black-box cycle on the same site: 26 test cases and 2 bug reports, written in a standard test case template.
+Alongside the automated suite, I ran a full manual black-box cycle on the same site: 26 test cases and 2 bug reports, written in a standard test case template.
 
 | Module | Test cases | Includes |
 |---|:---:|---|

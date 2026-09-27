@@ -1,45 +1,40 @@
-# Manual Testing — Automation Exercise
+# Manual Testing: automationexercise.com
 
-Manual QA testing project performed on [automationexercise.com](https://automationexercise.com), a public demo e-commerce site built for practicing manual and automated testing.
+**Full manual black-box test cycle on [automationexercise.com](https://automationexercise.com), a public demo e-commerce site: 26 test cases across 5 modules and 2 documented bugs.**
 
-## Overview
+**[Test cases & bug reports (Google Sheets)](https://docs.google.com/spreadsheets/d/1Kq1odftNSNppfaeaYLiV9xK3bT_BZYt8/edit?usp=sharing) · [Automated Selenium suite](../selenium/) · [Back to main README](../README.md)**
 
-This project documents a full manual test cycle across the core user flows of an e-commerce site — login, registration, search, cart, and checkout — using a standard test case and bug tracking format.
+---
 
-**26 test cases** across **5 modules**, plus **2 documented bugs** found during testing.
+## Coverage
 
-| Module | Test Cases | Coverage |
-|---|---|---|
-| Login | 10 | Happy path, invalid credentials, empty fields, whitespace handling, case sensitivity, SQL injection, oversized input |
+| Module | Test cases | What's covered |
+|---|:---:|---|
+| Login | 10 | Happy path, invalid credentials, empty fields, leading whitespace, uppercase email, SQL injection, very long input |
 | Registration | 5 | Happy path, duplicate email, invalid email format, empty fields, weak password |
-| Search | 3 | Existing product, no results, empty search field |
-| Cart | 5 | Add, remove, update quantity, total price calculation, persistence after refresh |
-| Checkout | 3 | Full checkout and payment flow, login requirement |
+| Search | 3 | Existing product, no results, empty search |
+| Cart | 5 | Add, remove, update quantity, total price, persistence after refresh |
+| Checkout | 3 | Full checkout and payment, login required before checkout |
 
-## Approach
+## Bugs found
 
-Test cases follow a black-box testing convention: **Expected Result** describes the general/functional outcome a tester would reasonably expect *before* running the test, while **Actual Result** captures the exact behavior and messages observed *during* testing. This mirrors how a tester without access to the system's source code would realistically document a test — expectations set in advance, results confirmed afterward.
-
-Beyond standard happy-path and validation checks, the login module includes a couple of edge cases often overlooked in junior-level testing:
-
-- Leading whitespace in the email field
-- Case sensitivity of the email field
-- Basic SQL injection resistance check
-- Handling of an extremely long input string
-
-## Bugs Found
-
-| ID | Related Test | Description | Severity |
+| ID | Related test | Description | Severity |
 |---|---|---|---|
-| BUG-001 | TC-008 | Login is case-sensitive on the email field, deviating from standard practice (emails should be case-insensitive) | Low |
-| BUG-002 | TC-015 | Registration accepts extremely weak/short passwords with no minimum strength requirement enforced | Medium |
+| BUG-001 | TC-008 | Login email field is case-sensitive. A valid email typed in uppercase is rejected, while email addresses are normally case-insensitive. | Low |
+| BUG-002 | TC-015 | Registration accepts extremely weak passwords (e.g. `1`). No minimum length or strength is enforced. | Medium |
 
-Full details, steps to reproduce, and expected/actual behavior are documented in the Bug Reports sheet.
+Steps to reproduce and expected vs. actual behavior for each bug are in the **Bug Reports** sheet.
+
+## How I wrote the test cases
+
+I used a black-box approach: I wrote the **Expected Result** before running each test, based on what a user would reasonably expect, and filled in the **Actual Result** afterward with the exact behavior and messages I saw. That's how a tester without access to the source code would work.
+
+Besides the usual happy paths and validation checks, I added a few edge cases to the login form: leading whitespace, an uppercase email, a basic SQL injection string, and a 500+ character input. The uppercase check is where BUG-001 turned up.
 
 ## Files
 
-- `QA_Test_Report_Template.xlsx` — full test case suite and bug reports (3 sheets: Test Cases, Bug Reports, Summary)
+- `QA_Test_Report_Template.xlsx`: the full suite in 3 sheets (Test Cases, Bug Reports, Summary). Same content as the Google Sheets link above.
 
 ## Tools
 
-Google Sheets / Excel, manual black-box testing, no automation involved in this project.
+Google Sheets / Excel, manual black-box testing.
