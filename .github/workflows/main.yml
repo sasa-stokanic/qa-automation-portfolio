@@ -20,6 +20,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
+        working-directory: selenium
         run: |
           pip install -r requirements.txt
 
@@ -27,6 +28,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Run tests
+        working-directory: selenium
         env:
           CI: true
         run: |
@@ -37,4 +39,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pytest-report
-          path: report.html
+          path: selenium/report.html

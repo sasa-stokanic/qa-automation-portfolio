@@ -12,7 +12,7 @@
 
 | Part | Stack | Scope |
 |---|---|---|
-| [`tests/`](tests/) + [`pages/`](pages/) | Python 3.11, Selenium, pytest, Page Object Model | 20 automated tests |
+| [`selenium/`](selenium/) | Python 3.11, Selenium, pytest, Page Object Model | 20 automated tests |
 | [`manual-testing/`](manual-testing/) | Black-box test cases, bug reports | 26 test cases, 2 bugs |
 | [`.github/workflows/`](.github/workflows/) | GitHub Actions, pytest-html | Headless run + HTML report on every push |
 
@@ -61,7 +61,7 @@ Full test cases with steps, expected and actual results: [Google Sheets](https:/
 ## How it runs
 
 - Every push and pull request to `main` triggers the workflow in `.github/workflows/main.yml`.
-- The `conftest.py` fixture checks the `CI` environment variable: visible Chrome locally, headless in CI, no config changes needed.
+- The `selenium/conftest.py` fixture checks the `CI` environment variable: visible Chrome locally, headless in CI, no config changes needed.
 - Selenium Manager (built into Selenium 4) finds the right ChromeDriver on its own, so the setup is the same on my machine and on the runner.
 - The pytest-html report is uploaded as a downloadable artifact on each run.
 
@@ -69,7 +69,7 @@ Full test cases with steps, expected and actual results: [Google Sheets](https:/
 
 ```bash
 git clone https://github.com/sasa-stokanic/qa-automation-portfolio.git
-cd qa-automation-portfolio
+cd qa-automation-portfolio/selenium
 pip install -r requirements.txt
 pytest tests/ -v --html=report.html --self-contained-html
 ```
